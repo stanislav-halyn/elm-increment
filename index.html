@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <script src="dist/elm.js"></script>
+
+  <style>
+    body {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script>
+    var app = Elm.Increment.init({ node: document.getElementById("root") });
+
+    const DATA_LS_KEY = 'DATA_LS_KEY';
+    app.ports.storeLocalStorage.subscribe(data => {
+      localStorage.setItem(DATA_LS_KEY, JSON.stringify(data));
+    });
+
+    const initData = () => {
+      const data = localStorage.getItem(DATA_LS_KEY);
+
+      if (!data) return;
+
+      app.ports.onStoreChange.send(JSON.parse(data));
+    };
+    initData();
+  </script>
+</body>
+
+</html>

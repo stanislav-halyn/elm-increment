@@ -1,0 +1,10 @@
+event,previous_value, value
+decrement,2,1
+decrement,3,2
+decrement,4,3
+decrement,5,4
+increment,4,5
+increment,3,4
+increment,2,3
+increment,1,2
+increment,0,1
